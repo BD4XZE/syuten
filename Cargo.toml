@@ -1,0 +1,50 @@
+[package]
+name = "syuten"
+version = "0.3.1"
+edition = "2024"
+license = "AGPL-3.0-only"
+[lib]
+name="syuten"
+crate-type = ["cdylib","rlib"]
+[dependencies]
+csv = "1.4.0"
+regex = "1.13.1"
+serde = {version="1.0.229",features=["derive"]}
+serde_json = "1.0.151"
+tokio = {version="1.53.1",features=["full"]}
+# owo-colors = "4.4.0"
+candle-core = {version = "0.11.0",features = ["cuda"]}
+candle-nn =  {version = "0.11.0",features = ["cuda"]}
+candle-transformers =  {version = "0.11.0",features = ["cuda"]}
+tokenizers   = "0.23.1"
+anyhow = "1.0.104"
+thiserror = "2.0.20"
+tabled = "0.21.0"
+rayon = "1.12.0"
+kdam = {version="0.6.4"}
+terminal_size   = "0.4.4"
+#指定cudarc避免candle报出cudarc版本不支持问题
+cudarc = {version = "0.19.9",default-features = false,features = ["cuda-13030"],}
+clap = {version="4.6.7",features = ["derive"]}
+rand = "0.10.3"
+
+[dependencies.pyo3]
+version= "0.29.2"
+features = ['extension-module',"anyhow"]
+
+
+[dev-dependencies]
+criterion = { version = "0.8.2", features = ["html_reports","cargo_bench_support","default"]}
+
+[[bin]]
+name = "syuten"
+path = "src/main.rs"
+
+[profile.release]
+panic = "abort"      
+strip = true         
+
+[[bench]]
+name = "syuten"
+harness = false
+

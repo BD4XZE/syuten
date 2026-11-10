@@ -1,0 +1,12 @@
+# Rust 构建产物
+/target
+
+# 模型权重（约 2.2GB，通过下载获取，不入库）
+src/model/model.safetensors
+
+# 运行时日志与临时输出
+src/log/error.csv
+src/result/*.csv
+
+# macOS / 系统文件
+.DS_Store
