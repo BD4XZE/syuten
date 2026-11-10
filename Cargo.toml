@@ -1,8 +1,8 @@
 [package]
 name = "syuten"
-version = "0.3.1"
+version = "0.3.3"
 edition = "2024"
-license = "AGPL-3.0-only OR LicenseRef-Syuten-Commercial"
+license = "AGPL-3.0-only OR Commercial License"
 [lib]
 name="syuten"
 crate-type = ["cdylib","rlib"]
