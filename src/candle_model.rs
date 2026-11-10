@@ -19,8 +19,7 @@ pub fn candle_run(word: String) -> Result<Vec<CandidateScore>> {
         .map_err(|_e| anyhow::anyhow!("word '{}' not find", &word))?;
     let sentences: Vec<String> = candle_str.get_sentences()?;
     let device = Device::new_cuda(0).context("failed to initialize CUDA")?;
-    // TODO：路径硬编码，应该改正
-    let model_dir = "/home/orionchen/RustroverProjects/syuten/src/model";
+    let model_dir = crate::model_source::resolve_model_dir()?;
     let reranker = Reranker::new(model_dir, device)?;
 
     //创建一个数组记得加mut
@@ -39,7 +38,7 @@ pub fn candle_run(word: String) -> Result<Vec<CandidateScore>> {
 
 pub fn init_candle() -> Result<Reranker> {
     let device = candle_core::Device::new_cuda(0).context("failed to initialize CUDA")?;
-    let model_dir = "/home/orionchen/RustroverProjects/syuten/src/model";
+    let model_dir = crate::model_source::resolve_model_dir()?;
     let reranker = Reranker::new(model_dir, device).context("config model error")?;
     Ok(reranker)
 }
@@ -144,7 +143,7 @@ impl OnnxWrite {
 
         //candle_init
         let device = Device::new_cuda(0).context("failed to initialize CUDA")?;
-        let model_dir = "/home/orionchen/RustroverProjects/syuten/src/model";
+        let model_dir = crate::model_source::resolve_model_dir()?;
         let reranker = Reranker::new(model_dir, device)?;
         for word in words {
             let candle_str = CandleStrTool::new(word.to_string());

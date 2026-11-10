@@ -24,7 +24,7 @@ fn write_csv(words: Vec<String>, save_path: &str) -> Result<()> {
         .from_writer(file);
     // candle_init
     let device = Device::new_cuda(0).context("failed to initialize CUDA")?;
-    let model_dir = "/home/orionchen/RustroverProjects/syuten/src/model";
+    let model_dir = crate::model_source::resolve_model_dir()?;
     let reranker = Reranker::new(model_dir, device).context("config model error")?;
 
     //进度条

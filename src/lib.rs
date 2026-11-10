@@ -1,5 +1,6 @@
 pub mod candle_model;
 pub mod cli;
+pub mod model_source;
 pub mod python_script;
 pub mod show;
 use anyhow::{Context, Result, ensure};
@@ -12,12 +13,10 @@ use std::fmt;
 use std::path::Path;
 use tokenizers::{Tokenizer, TruncationParams};
 
-//这里实在没招了,解决不了相对路径问题,所以我准备直接嵌入JSON数据.
-//后期发布可以考虑appimage或者相对路径
+//数据在编译期直接嵌入二进制,发布时无需携带数据文件.
 pub(crate) const DICT_JSON: &str = include_str!("data/dict_extract.json");
 pub(crate) const CET4_SENTENCES: &str = include_str!("data/CET4_part_sentences.csv");
-pub(crate) const PEGG_SENTENCES: &str =
-    include_str!("/home/orionchen/RustroverProjects/syuten/src/data/PEGG_restoration.csv");
+pub(crate) const PEGG_SENTENCES: &str = include_str!("data/PEGG_restoration.csv");
 pub(crate) type Dictionary = HashMap<String, Vec<String>>;
 
 #[derive(Debug, Serialize, PartialEq,Clone)]
