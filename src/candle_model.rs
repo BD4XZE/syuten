@@ -2,7 +2,6 @@ use crate::ResourceError;
 use crate::{CandidateScore, Reranker};
 use anyhow::{Context, Result};
 
-use candle_core::Device;
 use regex::Regex;
 use serde::Serialize;
 use std::collections::HashMap;
@@ -18,7 +17,7 @@ pub fn candle_run(word: String) -> Result<Vec<CandidateScore>> {
         .find_word_chinese_meaning()
         .map_err(|_e| anyhow::anyhow!("word '{}' not find", &word))?;
     let sentences: Vec<String> = candle_str.get_sentences()?;
-    let device = Device::new_cuda(0).context("failed to initialize CUDA")?;
+    let device = crate::select_device();
     let model_dir = crate::model_source::resolve_model_dir()?;
     let reranker = Reranker::new(model_dir, device)?;
 
@@ -37,7 +36,7 @@ pub fn candle_run(word: String) -> Result<Vec<CandidateScore>> {
 }
 
 pub fn init_candle() -> Result<Reranker> {
-    let device = candle_core::Device::new_cuda(0).context("failed to initialize CUDA")?;
+    let device = crate::select_device();
     let model_dir = crate::model_source::resolve_model_dir()?;
     let reranker = Reranker::new(model_dir, device).context("config model error")?;
     Ok(reranker)
@@ -142,7 +141,7 @@ impl OnnxWrite {
         let mut wtr = csv::Writer::from_path(save_path)?;
 
         //candle_init
-        let device = Device::new_cuda(0).context("failed to initialize CUDA")?;
+        let device = crate::select_device();
         let model_dir = crate::model_source::resolve_model_dir()?;
         let reranker = Reranker::new(model_dir, device)?;
         for word in words {

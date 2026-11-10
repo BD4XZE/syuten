@@ -3,7 +3,6 @@ use crate::candle_model::CandleStrTool;
 use crate::candle_model::OnnxWrite;
 use anyhow::Context;
 use anyhow::Result;
-use candle_core::Device;
 use kdam::{BarExt, tqdm};
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
@@ -23,7 +22,7 @@ fn write_csv(words: Vec<String>, save_path: &str) -> Result<()> {
         .has_headers(false)
         .from_writer(file);
     // candle_init
-    let device = Device::new_cuda(0).context("failed to initialize CUDA")?;
+    let device = crate::select_device();
     let model_dir = crate::model_source::resolve_model_dir()?;
     let reranker = Reranker::new(model_dir, device).context("config model error")?;
 

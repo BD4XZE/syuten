@@ -65,6 +65,17 @@ pub fn get_max(
     Ok(res)
 }
 
+/// 选择推理设备：优先使用 CUDA(0)，不可用时自动降级到 CPU。
+pub fn select_device() -> Device {
+    match Device::new_cuda(0) {
+        Ok(device) => device,
+        Err(err) => {
+            eprintln!("[WARN] CUDA 不可用，已降级到 CPU: {err}");
+            Device::Cpu
+        }
+    }
+}
+
 ///加载大模型，并配置它
 pub struct Reranker {
     model: BertModel,

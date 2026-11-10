@@ -1,0 +1,72 @@
+syuten 双许可证声明 / Dual Licensing Notice
+
+版权所有 (c) 2026 syuten
+Copyright (c) 2026 syuten
+
+联系方式 / Contact: Y539808257@outlook.com
+
+本软件（syuten，包括源代码、文档及随附数据）采用双许可证模式发布。
+This software (syuten, including its source code, documentation and bundled
+data) is released under a dual licensing model.
+
+你可以在以下两种许可证中任选其一使用本软件。
+You may use this software under either of the following licenses, at your option.
+
+================================================================================
+一、开源许可证：GNU Affero 通用公共许可证第 3 版（AGPL-3.0-only）
+    Open Source License: GNU Affero General Public License v3.0 only
+================================================================================
+
+1. 个人使用、学习、研究及其他非商业用途免费。
+   Personal, educational, research and other non-commercial use is free.
+
+2. 任何人均可免费使用本软件，但必须完整遵守 AGPL-3.0 的全部条款，包括但不限于：
+   - 修改、分发本软件或其衍生作品时，必须继续以 AGPL-3.0 授权，
+     并向接收者提供完整的对应源代码；
+   - 通过网络向用户提供本软件的功能（例如 SaaS/网络服务）时，
+     必须向这些用户提供完整的对应源代码；
+   - 必须保留版权声明与许可证声明。
+   Anyone may use this software free of charge provided they fully comply with
+   AGPL-3.0, including offering the complete corresponding source code to
+   recipients and to users interacting with it over a network.
+
+3. AGPL-3.0 全文见 LICENSE-AGPL-3.0.txt。
+   The full text of AGPL-3.0 is in LICENSE-AGPL-3.0.txt.
+
+================================================================================
+二、商业许可证（Commercial License）
+================================================================================
+
+1. 如果无法或不愿遵守 AGPL-3.0，而将本软件用于商业目的，必须事先取得付费的
+   商业许可证。商业目的包括但不限于：商业产品、闭源分发、SaaS 服务、
+   企业内部商业运营、收费部署/咨询/集成等。
+   If you cannot or do not want to comply with AGPL-3.0 and wish to use this
+   software commercially, you must obtain a paid commercial license in advance.
+
+2. 商业许可证按单独的《syuten 商业许可协议》授予，具体授权范围、期限、费用
+   及支持条款以双方签署的书面协议为准。未取得书面商业授权前，不得商业使用。
+   A commercial license is granted under a separate written agreement. Terms,
+   scope, duration and fees are defined in that agreement.
+
+3. 申请商业授权 / Commercial licensing inquiries:
+   Y539808257@outlook.com
+
+================================================================================
+说明 / Notes
+================================================================================
+
+- 双许可证是“二选一”：你可以选择 AGPL-3.0，也可以选择商业许可证。
+  Dual licensing means you choose one of the two licenses.
+
+- 遵守 AGPL-3.0 的使用者无需付费；商业许可证面向不能遵守 AGPL-3.0
+  （尤其是需要闭源）的商业场景。
+  Those who comply with AGPL-3.0 pay nothing; the commercial license is for
+  commercial scenarios that cannot comply with AGPL-3.0, such as closed-source
+  distribution.
+
+- 本软件按“现状”提供，不附带任何明示或暗示的担保，包括但不限于适销性、
+  特定用途适用性和非侵权担保。在适用法律允许的最大范围内，作者不对任何
+  直接、间接、偶然或后果性损害承担责任。
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.

@@ -6,7 +6,7 @@
 再用一个重排序模型（reranker）对“例句 × 释义”逐对打分，最后按出现频次输出最可能的中文释义。
 
 - 模型：`BAAI/bge-reranker-large`（XLM-RoBERTa-large 结构，隐藏层 1024，24 层）
-- 推理后端：`candle` + CUDA（需要可用的 NVIDIA GPU）
+- 推理后端：`candle`，优先使用 CUDA，无可用 CUDA 时自动降级到 CPU
 - 词典与例句数据在**编译期嵌入二进制**，运行时不依赖数据文件
 
 ---
@@ -43,8 +43,8 @@
 | 依赖 | 说明 |
 | --- | --- |
 | Rust | 使用 edition 2024，要求 `rustc >= 1.85` |
-| CUDA | `cudarc` 启用了 `cuda-13030` 特性，对应 CUDA 13.0.3 工具链 |
-| GPU | 需要可用的 NVIDIA GPU（代码固定使用 `cuda(0)` 设备） |
+| CUDA | 可选；用于启用 CUDA 支持（`cudarc` 的 `cuda-13030` 特性，对应 CUDA 13.0.3） |
+| GPU | 可选；有可用 NVIDIA GPU 时使用 `cuda(0)`，否则自动降级到 CPU |
 | 磁盘 | 首次运行需下载约 2.2 GB 模型权重 |
 
 ## 快速开始
@@ -231,4 +231,21 @@ cargo bench
 
 ## 许可证
 
-本项目采用 [AGPL-3.0-only](https://www.gnu.org/licenses/agpl-3.0.html) 许可证。
+本项目采用**双许可证**模式，可任选其一：
+
+- **开源许可证**：个人、学习、研究及非商业用途免费，须遵守
+  [AGPL-3.0-only](https://www.gnu.org/licenses/agpl-3.0.html)（全文见 `LICENSE-AGPL-3.0.txt`）。
+  任何人均可免费使用，但分发、修改或通过网络提供服务时须按 AGPL-3.0 提供完整对应源代码。
+- **商业许可证**：无法或不愿遵守 AGPL-3.0 的商业使用（商业产品、闭源分发、SaaS、
+  收费部署/咨询等）须事先购买商业授权，详见 `LICENSE-COMMERCIAL.md`。
+
+双许可证声明见 `LICENSE`。商业授权咨询：Y539808257@outlook.com。
+
+### 依赖许可证检查
+
+`deny.toml` 使用 [`cargo-deny`](https://github.com/EmbarkStudios/cargo-deny) 校验依赖许可证是否与
+AGPL-3.0 兼容：
+
+```bash
+cargo deny check licenses
+```
